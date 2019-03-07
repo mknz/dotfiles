@@ -98,7 +98,6 @@ alias ls=exa
 
 # some more ls aliases
 alias ll='ls -alF'
-alias l="less"
 
 alias rm='rm -i'
 alias mv='mv -i'
@@ -106,7 +105,11 @@ alias cp='cp -i'
 
 alias vi=nvim
 alias vim=nvim
+
+# Use nvim instead of less
 alias v='nvim -R'
+alias l='nvim -R'
+alias less='nvim -R'
 
 alias ip="ipython -i --pylab"
 alias sqlite3='rlwrap sqlite3'
