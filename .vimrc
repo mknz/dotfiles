@@ -15,6 +15,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'moll/vim-bbye'
 
 " Git
 Plug  'tpope/vim-fugitive'
@@ -154,6 +155,9 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_winsize = 20
+
+" vim-bbye
+nnoremap <Leader>q :Bdelete<CR>
 
 " less behaviour for view
 " https://stackoverflow.com/a/39836959/2192488
