@@ -107,7 +107,6 @@ alias vi=nvim
 alias vim=nvim
 
 # Use nvim instead of less
-alias v='nvim -R'
 alias l='nvim -R'
 alias less='nvim -R'
 
