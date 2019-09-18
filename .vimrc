@@ -23,6 +23,8 @@ Plug  'tpope/vim-fugitive'
 " Google search
 Plug 'szw/vim-g'
 
+Plug 'jremmen/vim-ripgrep'
+
 call plug#end()
 
 " Use ripgrep in denite

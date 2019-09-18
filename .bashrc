@@ -152,6 +152,9 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 #export PATH=$PATH:`npm bin -g`
 export NODE_PATH=`npm root -g`
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export EDITOR=/usr/local/bin/nvim
 
 #Source-hilight with less
@@ -192,3 +195,9 @@ shopt -s globstar
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Load local envs
+LOCAL_ENV=$HOME/.local_env
+if [ -f $LOCAL_ENV ]; then
+    source $LOCAL_ENV
+fi
