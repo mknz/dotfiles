@@ -182,3 +182,5 @@ augroup ReadOnly
     au!
     au VimEnter * :call LessBehaviour()
 augroup END
+
+command Gb Gblame
