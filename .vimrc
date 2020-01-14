@@ -184,3 +184,7 @@ augroup ReadOnly
 augroup END
 
 command Gb Gblame
+
+" Filetypes
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType sql setlocal shiftwidth=2 tabstop=2
