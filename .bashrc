@@ -139,14 +139,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Brew
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-
 # pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
-export XDG_DATA_DIRS="/home/mknz/.linuxbrew/share:$XDG_DATA_DIRS"
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 #export PATH=$PATH:`npm bin -g`
