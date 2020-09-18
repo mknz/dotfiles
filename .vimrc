@@ -4,6 +4,8 @@ let g:config_home = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CON
 " vim-plug
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'dense-analysis/ale'
+
 Plug 'Shougo/denite.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'autozimu/LanguageClient-neovim', {
@@ -40,8 +42,6 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#rust#documentation_max_height = 20
 
 " LRS
-" Required for operations modifying multiple buffers like rename.
-set hidden
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -49,6 +49,8 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['pyls'],
     \ }
+
+let g:LanguageClient_useVirtualText = 'No'
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
@@ -182,7 +184,7 @@ augroup ReadOnly
     au VimEnter * :call LessBehaviour()
 augroup END
 
-command Gb Gblame
+command! Gb Gblame
 
 " Filetypes
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
