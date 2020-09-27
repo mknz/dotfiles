@@ -6,15 +6,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'dense-analysis/ale'
 
-Plug 'Shougo/denite.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'moll/vim-bbye'
@@ -27,21 +23,15 @@ Plug 'szw/vim-g'
 
 Plug 'jremmen/vim-ripgrep'
 
+" You need to manually finish the installation
+" export PYTHON_CONFIGURE_OPTS="--enable-shared"
+" pyenv install <VERSION>
+" cd ~/.local/share/nvim/plugged/YouCompleteMe ; python3 install.py
+Plug 'Valloric/YouCompleteMe'
+
 call plug#end()
 
-" Use ripgrep in denite
-if executable('rg')
-  call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
-  call denite#custom#var('grep', 'command', ['rg'])
-endif
-
-let g:deoplete#enable_at_startup = 1
-
-" Rust
-let g:deoplete#sources#rust#documentation_max_height = 20
-
-" LRS
+" LanguageClient
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -49,11 +39,9 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['pyls'],
     \ }
-
 let g:LanguageClient_useVirtualText = 'No'
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
@@ -94,7 +82,6 @@ set fileencoding=utf-8
 
 let g:sql_type_default = 'mysql'
 
-" for jedi-vim
 autocmd FileType python setlocal completeopt-=preview
 
 " remove trailing space
@@ -109,7 +96,7 @@ tnoremap <silent> <ESC> <C-\><C-n>
 " no need to save when buffer switch
 set hidden
 
-" auto go to current directory
+" Always set current directory
 set autochdir
 
 " close buffer without losing split window
@@ -119,32 +106,17 @@ set whichwrap=h,l
 set ignorecase
 set smartcase
 
-" Python Runner
-autocmd BufNewFile,BufRead *.py nnoremap <C-e> :!python3 %<CR>
-
 " Pylint
 autocmd BufNewFile,BufRead *.py nnoremap <C-l> :!pylint %<CR>
 
 " Enable spell check
 autocmd BufNewFile,BufRead *.md set spell
 
-" Load .vimrc on save
-autocmd BufWritePost ~/.vimrc source %
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsEditSplit="vertical"
-inoremap <c-x><c-k> <c-x><c-k>
-let g:ultisnips_python_style="google"
-
 " Allow clipboard copy
 set clipboard=unnamed
 set clipboard+=unnamedplus
 
-" vim-slime for work with ipython
+" vim-slime with ipython
 let g:slime_python_ipython = 1
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
@@ -161,7 +133,7 @@ let g:netrw_winsize = 20
 " vim-bbye
 nnoremap <Leader>q :Bdelete<CR>
 
-" less behaviour for view
+" less-like behavior in read-only mode
 " https://stackoverflow.com/a/39836959/2192488
 
 " http://vim.wikia.com/wiki/Using_vim_as_a_syntax-highlighting_pager
@@ -189,3 +161,9 @@ command! Gb Gblame
 " Filetypes
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType sql setlocal shiftwidth=2 tabstop=2
+
+" Omni completion by Ctrl-N
+inoremap <C-N> <C-X><C-O>
+
+" Disable underlines
+hi CursorLine cterm=NONE ctermbg=DarkGray ctermfg=white
