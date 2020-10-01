@@ -39,6 +39,11 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['pyls'],
     \ }
+
+let g:ale_linters = {
+\   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
+\}
+
 let g:LanguageClient_useVirtualText = 'No'
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
