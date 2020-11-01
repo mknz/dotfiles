@@ -34,13 +34,13 @@ let g:ale_linters = {
 \   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
 \}
 let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
-nnoremap <silent> D : ALEDetail<CR>
+nnoremap <silent> D :ALEDetail<CR>
 
 " LanguageClient
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
-    \ 'rust': ['rust-analyzer'],
+    \ 'rust': ['$HOME/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/third_party/rust-analyzer/bin/rust-analyzer'],
     \ 'vim': ['vim-language-server', '--stdio'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
@@ -53,7 +53,6 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 set expandtab
-set nolist
 set showmatch
 set smartindent
 set tabstop=4
