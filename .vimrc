@@ -26,7 +26,7 @@ Plug 'jremmen/vim-ripgrep'
 " pyenv install <VERSION>
 " cd ~/.local/share/nvim/plugged/YouCompleteMe ; python3 install.py
 Plug 'Valloric/YouCompleteMe'
-
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " ALE
@@ -34,10 +34,7 @@ let g:ale_linters = {
 \   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
 \}
 let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
-
-" Disable highlights
-highlight clear ALEError
-highlight clear ALEWarning
+nnoremap <silent> D : ALEDetail<CR>
 
 " LanguageClient
 let g:LanguageClient_autoStart = 1
@@ -47,7 +44,6 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ }
-
 let g:LanguageClient_useVirtualText = 'No'
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -72,9 +68,7 @@ set shiftwidth=4
 set wildmode=list:longest
 
 " color scheme
-syntax enable
-set background=dark
-colorscheme slate
+colorscheme gruvbox
 
 set hls
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
@@ -169,6 +163,3 @@ autocmd FileType sql setlocal shiftwidth=2 tabstop=2
 
 " Omni completion by Ctrl-N
 inoremap <C-N> <C-X><C-O>
-
-" Disable underlines
-hi CursorLine cterm=NONE ctermbg=DarkGray ctermfg=white
