@@ -184,7 +184,7 @@ export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 export PATH="$PATH:$HOME/bin"
 
 # Rust
-export RUST_SRC_PATH=/home/mknz/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"
 
 shopt -s globstar
 
