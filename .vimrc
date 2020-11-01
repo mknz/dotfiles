@@ -24,7 +24,7 @@ Plug 'jremmen/vim-ripgrep'
 " You need to manually finish the installation
 " export PYTHON_CONFIGURE_OPTS="--enable-shared"
 " pyenv install <VERSION>
-" cd ~/.local/share/nvim/plugged/YouCompleteMe ; python3 install.py
+" cd ~/.local/share/nvim/plugged/YouCompleteMe ; python3 install.py --all
 Plug 'Valloric/YouCompleteMe'
 Plug 'morhetz/gruvbox'
 call plug#end()
@@ -41,6 +41,7 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'rust': ['rust-analyzer'],
+    \ 'vim': ['vim-language-server', '--stdio'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ }
@@ -52,16 +53,8 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 set expandtab
-set backspace=2
-set wrapscan
-set wildmenu
 set nolist
-set wrap
-set showcmd
-set backspace=1
-set ruler
 set showmatch
-set showmode
 set smartindent
 set tabstop=4
 set shiftwidth=4
@@ -70,11 +63,9 @@ set wildmode=list:longest
 " color scheme
 colorscheme gruvbox
 
-set hls
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 set virtualedit=all
-set incsearch
 
 set encoding=utf-8
 set fileencoding=utf-8
