@@ -4,13 +4,11 @@ let g:config_home = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CON
 " vim-plug
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'dense-analysis/ale'
-
-Plug 'rust-lang/rust.vim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'dense-analysis/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'moll/vim-bbye'
@@ -31,18 +29,23 @@ Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
-" LanguageClient
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['pyls'],
-    \ }
-
+" ALE
 let g:ale_linters = {
 \   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
 \}
+
+" Disable highlights
+highlight clear ALEError
+highlight clear ALEWarning
+
+" LanguageClient
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rust-analyzer'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ }
 
 let g:LanguageClient_useVirtualText = 'No'
 
@@ -50,10 +53,6 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-" ALE disable highlight
-highlight clear ALEError
-highlight clear ALEWarning
 
 set expandtab
 set backspace=2
