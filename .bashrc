@@ -151,6 +151,9 @@ export NODE_PATH=`npm root -g`
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# yarn
+export PATH="$HOME/.yarn/bin:$PATH"
+
 export EDITOR=/usr/local/bin/nvim
 
 #Source-hilight with less
