@@ -33,6 +33,7 @@ call plug#end()
 let g:ale_linters = {
 \   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
 \}
+let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 
 " Disable highlights
 highlight clear ALEError
