@@ -123,7 +123,7 @@ function gd() {
     n1=$(($1 - 1))
     n2=$1
     unbuffer git --no-pager log -1 --pretty=oneline --abbrev-commit HEAD~$n1 > out1
-    unbuffer git --no-pager diff HEAD~$n1 HEAD~$n2 > out2
+    unbuffer git --no-pager diff HEAD~$n2 HEAD~$n1 > out2
     cat out1 out2 | /bin/less
 }
 
