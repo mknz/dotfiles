@@ -115,6 +115,18 @@ alias sqlite3='rlwrap sqlite3'
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
 
+# Fix lost cursor
+alias ti='tput init'
+
+# git diff extension
+function gd() {
+    n1=$(($1 - 1))
+    n2=$1
+    unbuffer git --no-pager log -1 --pretty=oneline --abbrev-commit HEAD~$n1 > out1
+    unbuffer git --no-pager diff HEAD~$n1 HEAD~$n2 > out2
+    cat out1 out2 | /bin/less
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -156,7 +168,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 export EDITOR=/usr/local/bin/nvim
 
-#Source-hilight with less
+# Source-hilight with less
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS='-R'
 
