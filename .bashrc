@@ -122,9 +122,9 @@ alias ti='tput init'
 function gd() {
     n1=$(($1 - 1))
     n2=$1
-    unbuffer git --no-pager log -1 --pretty=oneline --abbrev-commit HEAD~$n1 > out1
-    unbuffer git --no-pager diff HEAD~$n2 HEAD~$n1 > out2
-    cat out1 out2 | /bin/less
+    out1=$(unbuffer git --no-pager log -1 --pretty=oneline --abbrev-commit HEAD~$n1)
+    out2=$(unbuffer git --no-pager diff HEAD~$n2 HEAD~$n1)
+    printf "$out1\n\n$out2" | /bin/less
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
