@@ -124,7 +124,7 @@ function gd() {
     n2=$1
     out1=$(unbuffer git --no-pager log -1 --pretty=oneline --abbrev-commit HEAD~$n1)
     out2=$(unbuffer git --no-pager diff HEAD~$n2 HEAD~$n1)
-    printf "$out1\n\n$out2" | /bin/less
+    printf "$out1\n\n$out2" | /usr/bin/less
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
