@@ -192,9 +192,6 @@ export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]
 
 export IGNOREEOF=5
 
-export PATH="/usr/local/cuda/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-
 # Bazel
 export PATH="$PATH:$HOME/bin"
 
