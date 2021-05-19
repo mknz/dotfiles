@@ -12,6 +12,7 @@ Plug 'dense-analysis/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'moll/vim-bbye'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " Git
 Plug  'tpope/vim-fugitive'
