@@ -157,8 +157,6 @@ export PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-#export PATH=$PATH:`npm bin -g`
-export NODE_PATH=`npm root -g`
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -209,3 +207,26 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:/usr/local/go/bin
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
+
+
+# Swap audio profile between hdmi and analog output
+function swap_audio_profile () {
+    CARD=$(pactl list cards|grep Name|awk '{print $2}')
+    CURRENT_PROFILE=$(pactl list cards|grep Active|awk '{print $3}')
+    if [[ "$CURRENT_PROFILE" = "output:analog-stereo"* ]]; then
+        pactl set-card-profile $CARD output:hdmi-stereo
+    fi
+    if [[ "$CURRENT_PROFILE" = "output:hdmi-stereo"* ]]; then
+        pactl set-card-profile $CARD output:analog-stereo
+    fi
+}
