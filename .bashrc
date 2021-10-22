@@ -210,3 +210,5 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
+
+export PYTHONBREAKPOINT=ipdb.set_trace
