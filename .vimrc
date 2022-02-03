@@ -13,6 +13,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'moll/vim-bbye'
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-python/python-syntax'
 
 " Git
 Plug  'tpope/vim-fugitive'
@@ -20,7 +21,8 @@ Plug  'tpope/vim-fugitive'
 " Google search
 Plug 'szw/vim-g'
 
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
+"Plug 'github/copilot.vim'
 
 " You need to manually finish the installation
 " export PYTHON_CONFIGURE_OPTS="--enable-shared"
@@ -30,9 +32,11 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'morhetz/gruvbox'
 call plug#end()
 
+let g:python_highlight_all = 1
+
 " ALE
 let g:ale_linters = {
-\   'python': ['pylint', 'mypy', 'pyright', 'flake8', 'pydocstyle'],
+\   'python': ['pylint', 'mypy', 'flake8', 'pydocstyle'],
 \}
 let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 nnoremap <silent> D :ALEDetail<CR>
@@ -146,7 +150,7 @@ augroup ReadOnly
     au VimEnter * :call LessBehaviour()
 augroup END
 
-command! Gb Gblame
+command! Gb Git blame
 
 " Filetypes
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
@@ -154,3 +158,7 @@ autocmd FileType sql setlocal shiftwidth=2 tabstop=2
 
 " Omni completion by Ctrl-N
 inoremap <C-N> <C-X><C-O>
+
+" Copilot
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
