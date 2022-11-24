@@ -106,9 +106,9 @@ alias cp='cp -i'
 alias vi=nvim
 alias vim=nvim
 
-# Use nvim instead of less
-alias l='nvim -R'
-alias less='nvim -R'
+# Use bat instead of less
+alias l='batcat'
+alias less='batcat'
 
 alias ip="ipython -i --pylab"
 alias sqlite3='rlwrap sqlite3'
@@ -118,13 +118,16 @@ alias diff="colordiff --strip-trailing-cr"
 # Fix lost cursor
 alias ti='tput init'
 
+# Clipboard paste
+alias v='xclip -o -selection clipboard'
+
+alias jl='jupyter lab --no-browser'
+
 # git diff extension
 function gd() {
     n1=$(($1 - 1))
     n2=$1
-    out1=$(unbuffer git --no-pager log -1 --abbrev-commit HEAD~$n1)
-    out2=$(unbuffer git --no-pager diff HEAD~$n2 HEAD~$n1)
-    printf "%s\n\n%s\n" "$out1" "$out2" | /usr/bin/less
+    git diff HEAD~$n2 HEAD~$n1
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -150,12 +153,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:$PATH"
-eval "$(pyenv init --path)"
-
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -231,3 +228,8 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
