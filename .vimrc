@@ -15,6 +15,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'szw/vim-g'
 Plug 'jremmen/vim-ripgrep'
 Plug 'morhetz/gruvbox'
+Plug 'preservim/tagbar'
 call plug#end()
 
 let g:python_highlight_all = 1
@@ -240,3 +241,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Ctags plugin
+nmap <F8> :TagbarToggle<CR>
