@@ -82,8 +82,7 @@ autocmd BufNewFile,BufRead *.py nnoremap <C-l> :!pylint %<CR>
 autocmd BufNewFile,BufRead *.md set spell
 
 " Allow clipboard copy
-set clipboard=unnamed
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 
 " Search DuckDuckGo
 let g:vim_g_query_url = "https://duckduckgo.com/?q="
