@@ -225,8 +225,3 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
