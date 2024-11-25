@@ -154,6 +154,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# uvx
+export PATH="/home/nori/.local/bin:$PATH"
+
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Rust
@@ -225,3 +228,4 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
+. "$HOME/.cargo/env"
