@@ -165,7 +165,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # yarn
 export PATH="$HOME/.yarn/bin:$PATH"
 
-export EDITOR=/usr/local/bin/nvim
+# Go
+export PATH=$PATH:/usr/local/go/bin
+
+export EDITOR=/usr/bin/nvim
 
 # Source-hilight with less
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
@@ -205,8 +208,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=$PATH:/usr/local/go/bin
-
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
@@ -229,3 +230,11 @@ if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
 . "$HOME/.cargo/env"
+
+. "/home/nori/.deno/env"
+
+# Added by Radicle.
+export PATH="$PATH:/home/nori/.radicle/bin"
+
+# Local tools
+export PATH="$PATH:/home/nori/dev/tools"
