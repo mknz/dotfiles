@@ -111,17 +111,11 @@ alias l='batcat'
 alias less='batcat'
 
 alias ip="ipython -i --pylab"
-alias sqlite3='rlwrap sqlite3'
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
 
 # Fix lost cursor
 alias ti='tput init'
-
-# Clipboard paste
-alias v='xclip -o -selection clipboard'
-
-alias jl='jupyter lab --no-browser'
 
 # git diff extension
 function gd() {
@@ -155,15 +149,12 @@ if ! shopt -oq posix; then
 fi
 
 # uvx
-export PATH="/home/nori/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# yarn
-export PATH="$HOME/.yarn/bin:$PATH"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
@@ -191,9 +182,6 @@ export PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]
 
 export IGNOREEOF=5
 
-# Bazel
-export PATH="$PATH:$HOME/bin"
-
 # Rust
 export RUST_SRC_PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"
 
@@ -204,13 +192,10 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PYTHONBREAKPOINT=ipdb.set_trace
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/__tabtab.bash ] && . ~/.config/tabtab/__tabtab.bash || true
 
 # Swap audio profile between hdmi and analog output
 function swap_audio_profile () {
@@ -229,12 +214,13 @@ LOCAL_ENV=$HOME/.local_env
 if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
+
 . "$HOME/.cargo/env"
 
-. "/home/nori/.deno/env"
+. "$HOME/.deno/env"
 
 # Added by Radicle.
-export PATH="$PATH:/home/nori/.radicle/bin"
+export PATH="$PATH:$HOME/.radicle/bin"
 
 # Local tools
-export PATH="$PATH:/home/nori/dev/tools"
+export PATH="$PATH:$HOME/dev/tools"
