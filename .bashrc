@@ -151,8 +151,6 @@ fi
 # uvx
 export PATH="$HOME/.local/bin:$PATH"
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
