@@ -124,6 +124,16 @@ function gd() {
     git diff HEAD~$n2 HEAD~$n1
 }
 
+# Show image on tmux
+function imgview() {
+    tmux split-window -v "kitten icat --align center --scale-up --place 30x20@0x0 \"$1\"; read -n1; tmux kill-pane"
+}
+
+# On new window
+function imgview-n() {
+    tmux new-window "kitten icat --align center --scale-up --place 90x60@0x0 \"$1\"; read -n1; tmux kill-pane"
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
