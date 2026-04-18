@@ -103,14 +103,17 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 
-alias vi=nvim
-alias vim=nvim
+# Workaround for language servers
+alias vi='uv run nvim'
+alias vim='uv run nvim'
 
 # Use bat instead of less
 alias l='batcat'
 alias less='batcat'
 
-alias ip="ipython -i --pylab"
+# Run IPython with currenct uv venv plus usual toolkits
+alias ip="uv run --with numpy --with duckdb --with pandas --with pyarrow --with plotly --with polars --with pyqt6 --with ipython ipython -i --pylab"
+
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
 
@@ -198,6 +201,10 @@ shopt -s globstar
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Custom preview command
+export FZF_DEFAULT_OPTS="--preview '$HOME/dev/dotfiles/fzf-preview.sh {}'"
+# Only current dir
+alias  fz='fd --max-depth 1 --type f | fzf'
 
 export PYTHONBREAKPOINT=ipdb.set_trace
 

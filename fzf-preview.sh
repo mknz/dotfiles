@@ -28,7 +28,7 @@ fi
 
 type=$(file --brief --dereference --mime -- "$file")
 
-if [[ ! $type =~ image/ ]]; then
+if [[ ! $type =~ image/ ]] && [[ ! $type =~ application/pdf ]]; then
   if [[ $type =~ =binary ]]; then
     file "$1"
     exit
@@ -55,6 +55,19 @@ elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty
   # Avoid scrolling issue when the Sixel image touches the bottom of the screen
   # * https://github.com/junegunn/fzf/issues/2544
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
+fi
+
+# PDF preview
+if [[ $type =~ application/pdf ]]; then
+  pdftmp=$(mktemp /tmp/fzf-pdf-XXXXXX)
+  pdftoppm -r 50 -f 1 -l 1 -png -singlefile "$file" ${pdftmp} 2>/dev/null
+  pdftmpfile=${pdftmp}.png
+
+  kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" ${pdftmpfile} | sed '$d' | sed $'$s/$/\e[m/'
+
+  # Cleanup
+  rm -f ${pdftmp} ${pdftmpfile}
+  exit
 fi
 
 # 1. Use icat (from Kitty) if kitten is installed
