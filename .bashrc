@@ -104,15 +104,20 @@ alias mv='mv -i'
 alias cp='cp -i'
 
 # Workaround for language servers
-alias vi='uv run nvim'
-alias vim='uv run nvim'
+function vi() {
+  if [[ "${1: -3}" == ".py" ]]; then
+    uv run nvim $1
+  else
+    nvim $1
+  fi
+}
 
 # Use bat instead of less
 alias l='batcat'
 alias less='batcat'
 
 # Run IPython with currenct uv venv plus usual toolkits
-alias ip="uv run --with numpy --with duckdb --with pandas --with pyarrow --with plotly --with polars --with pyqt6 --with ipython ipython -i --pylab"
+alias ip="uv run --with numpy --with duckdb --with pandas --with pyarrow --with plotly --with matplotlib --with polars --with pyqt6 --with ipython ipython -i --pylab"
 
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
@@ -201,10 +206,15 @@ shopt -s globstar
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# Custom preview command
-export FZF_DEFAULT_OPTS="--preview '$HOME/dev/dotfiles/fzf-preview.sh {}'"
-# Only current dir
-alias  fz='fd --max-depth 1 --type f | fzf'
+
+# Custom preview command & max tmux pane
+fz() {
+  tmux resize-pane -Z 2>/dev/null  # zoom in (no-op if not in tmux)
+  command fzf --preview '$HOME/dev/dotfiles/fzf-preview.sh {}'
+  tmux resize-pane -Z 2>/dev/null  # zoom out (toggles back)
+}
+# Show only current dir
+alias  fzc='fd --max-depth 1 | fz'
 
 export PYTHONBREAKPOINT=ipdb.set_trace
 
