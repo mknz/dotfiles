@@ -132,14 +132,24 @@ function gd() {
     git diff HEAD~$n2 HEAD~$n1
 }
 
+# Interactive git add
+function ga () {
+  git add $(git status -s | fzf | awk '{print $2}')
+}
+
+# Maximize pane and git diff with preview
+function gl() {
+  [[ "$TMUX" ]] && tmux new-window "git log --oneline | fzf --preview 'git show --color=always {1} | delta -s' --preview-window=right:80% | cut -d ' ' -f 1 | wl-copy; tmux kill-pane"
+}
+
 # Show image on tmux
 function imgview() {
-    tmux split-window -v "kitten icat --align center --scale-up --place 30x20@0x0 \"$1\"; read -n1; tmux kill-pane"
+  [[ "$TMUX" ]] && tmux split-window -v "kitten icat --align center --scale-up --place 30x20@0x0 \"$1\"; read -n1; tmux kill-pane"
 }
 
 # On new window
 function imgview-n() {
-    tmux new-window "kitten icat --align center --scale-up --place 90x60@0x0 \"$1\"; read -n1; tmux kill-pane"
+  [[ "$TMUX" ]] && tmux new-window "kitten icat --align center --scale-up --place 90x60@0x0 \"$1\"; read -n1; tmux kill-pane"
 }
 
 # Add an "alert" alias for long running commands.  Use like so:
