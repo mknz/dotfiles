@@ -5,17 +5,16 @@ let g:config_home = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CON
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'moll/vim-bbye'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-python/python-syntax'
 " Git
-Plug  'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Google search
+" Web search
 Plug 'szw/vim-g'
-Plug 'jremmen/vim-ripgrep'
 Plug 'morhetz/gruvbox'
-Plug 'preservim/tagbar'
 call plug#end()
 
 let g:python_highlight_all = 1
@@ -240,6 +239,3 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" Ctags plugin
-nmap <F8> :TagbarToggle<CR>
