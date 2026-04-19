@@ -206,6 +206,8 @@ shopt -s globstar
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Show hidden/ignored files by Ctrl-H
+export FZF_DEFAULT_OPTS="--bind 'ctrl-h:reload(fd --type f --hidden --no-ignore --exclude .git)'"
 
 # Custom preview command & max tmux pane
 fz() {
