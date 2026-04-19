@@ -60,7 +60,7 @@ fi
 # PDF preview
 if [[ $type =~ application/pdf ]]; then
   pdftmp=$(mktemp /tmp/fzf-pdf-XXXXXX)
-  pdftoppm -r 50 -f 1 -l 1 -png -singlefile "$file" ${pdftmp} 2>/dev/null
+  pdftoppm -r 100 -f 1 -l 1 -png -singlefile "$file" ${pdftmp} 2>/dev/null
   pdftmpfile=${pdftmp}.png
 
   kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" ${pdftmpfile} | sed '$d' | sed $'$s/$/\e[m/'
