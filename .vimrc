@@ -15,6 +15,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Web search
 Plug 'szw/vim-g'
 Plug 'morhetz/gruvbox'
+Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 let g:python_highlight_all = 1
