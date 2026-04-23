@@ -134,12 +134,19 @@ function gd() {
 
 # Interactive git add
 function ga () {
-  git add $(git status -s | fzf | awk '{print $2}')
+  git add $(git status -s | fzf -m | awk '{print $2}')
 }
 
 # Maximize pane and git diff with preview
 function gl() {
-  [[ "$TMUX" ]] && tmux new-window "git log --oneline | fzf --preview 'git show --color=always {1} | delta -s' --preview-window=right:80% | cut -d ' ' -f 1 | wl-copy; tmux kill-pane"
+  local copy_cmd
+  if [[ -n "$WAYLAND_DISPLAY" ]]; then
+    copy_cmd="wl-copy"
+  else
+    copy_cmd="xclip -selection clipboard"
+  fi
+
+  [[ "$TMUX" ]] && tmux new-window "git log --oneline | fzf --preview 'git show --color=always {1} | delta -s' --preview-window=right:80% | cut -d ' ' -f 1 | $copy_cmd; tmux kill-pane"
 }
 
 # Show image on tmux

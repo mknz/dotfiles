@@ -1,5 +1,11 @@
 #!/bin/bash
-content=$(wl-paste --type text/plain 2>/dev/null || wl-paste)
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+  paste_cmd="wl-paste"
+else
+  paste_cmd="xclip -selection clipboard -o"
+fi
+
+content=$($paste_cmd --type text/plain 2>/dev/null || $paste_cmd)
 lines=$(printf "%s" "$content" | wc -l)
 chars=$(printf "%s" "$content" | wc -c)
 printf "%s" "$content" | tmux load-buffer -
