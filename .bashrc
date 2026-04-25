@@ -227,9 +227,9 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-h:reload(fd --type f --hidden --no-ignore --exclude .git)'"
 
 # Custom preview command & max tmux pane
-fz() {
+function fz() {
   tmux resize-pane -Z 2>/dev/null  # zoom in (no-op if not in tmux)
-  command fzf --preview '$HOME/dev/dotfiles/fzf-preview.sh {}'
+  command fzf --preview '$HOME/dev/dotfiles/fzf-preview.sh {}' "$@"
   tmux resize-pane -Z 2>/dev/null  # zoom out (toggles back)
 }
 # Show only current dir
