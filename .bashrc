@@ -268,3 +268,9 @@ export PATH="$PATH:$HOME/.radicle/bin"
 
 # Local tools
 export PATH="$PATH:$HOME/dev/tools"
+
+# SSH Agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -a "$SSH_AUTH_SOCK" -D &
+fi
