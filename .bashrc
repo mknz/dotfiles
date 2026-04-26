@@ -116,9 +116,6 @@ function vi() {
 alias l='batcat'
 alias less='batcat'
 
-# Run IPython with currenct uv venv plus usual toolkits
-alias ip="uv run --with numpy --with duckdb --with pandas --with pyarrow --with plotly --with matplotlib --with polars --with pyqt6 --with ipython ipython -i --pylab"
-
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
 
