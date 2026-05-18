@@ -106,15 +106,15 @@ alias cp='cp -i'
 # Workaround for language servers
 function vi() {
   if [[ "${1: -3}" == ".py" ]]; then
-    uv run nvim $1
+    uv run nvim "$1"
   else
-    nvim $1
+    nvim "$1"
   fi
 }
 
 # Use bat instead of less
-alias l='batcat'
-alias less='batcat'
+alias l='bat'
+alias less='bat'
 
 alias open=xdg-open
 alias diff="colordiff --strip-trailing-cr"
@@ -256,9 +256,7 @@ if [ -f $LOCAL_ENV ]; then
     source $LOCAL_ENV
 fi
 
-. "$HOME/.cargo/env"
-
-. "$HOME/.deno/env"
+#. "$HOME/.cargo/env"
 
 # Added by Radicle.
 export PATH="$PATH:$HOME/.radicle/bin"
@@ -266,8 +264,7 @@ export PATH="$PATH:$HOME/.radicle/bin"
 # Local tools
 export PATH="$PATH:$HOME/dev/tools"
 
-# SSH Agent
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -a "$SSH_AUTH_SOCK" -D &
-fi
+eval "$(keychain --eval --quiet ~/.ssh/id_ed25519)"
+
+. "$HOME/.deno/env"
+source /home/nori/.local/share/bash-completion/completions/deno.bash
