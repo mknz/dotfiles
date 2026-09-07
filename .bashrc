@@ -90,6 +90,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias vi=nvim
+
 # Use eza instead of ls
 alias ls=eza
 
@@ -102,15 +104,6 @@ alias ll='ls -alF'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-
-# Workaround for language servers
-function vi() {
-  if [[ "${1: -3}" == ".py" ]]; then
-    uv run nvim "$1"
-  else
-    nvim "$1"
-  fi
-}
 
 # Use bat instead of less
 alias l='bat'
