@@ -8,8 +8,9 @@ WorkingDirectory=%h
 ExecStart=%h/.local/bin/llama server \
     -hf unsloth/gemma-4-E4B-it-GGUF \
     --host 127.0.0.1 \
-    --port 8080 \
-    -c 8192
+    --port 9292 \
+    -c 8192 \
+    -rea off
 Restart=on-failure
 RestartSec=5
 
