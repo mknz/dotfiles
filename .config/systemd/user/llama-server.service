@@ -1,0 +1,20 @@
+[Unit]
+Description=llama.cpp server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h
+ExecStart=%h/.local/bin/llama server \
+    -hf unsloth/gemma-4-E4B-it-GGUF \
+    --host 127.0.0.1 \
+    --port 8080 \
+    -c 8192
+Restart=on-failure
+RestartSec=5
+
+# Optional resource guards
+MemoryMax=48G
+
+[Install]
+WantedBy=default.target
